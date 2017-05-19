@@ -1,7 +1,7 @@
 'use strict';
 
 const http = require('http');
-
+const p = require('./ports');
 const server = http.createServer((req, res) => {
   if (req.url === '/') {
     res.setHeader('content-type', 'text/html');
@@ -9,8 +9,8 @@ const server = http.createServer((req, res) => {
       <!DOCTYPE html>
       <html>
         <body>
-          <h1>Some header!</h1>
-          <p>body =P</p>
+          <h1>${p.upper(__dirname)}</h1>
+          <h1>${p.lower(__dirname)}</h1>
         </body>
       </html>
       `);
