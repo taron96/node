@@ -1,7 +1,7 @@
 'use strict';
 
 const http = require('http');
-const p = require('./ports');
+const {upper, lower, PORT} = require('./ports');
 const server = http.createServer((req, res) => {
   if (req.url === '/') {
     res.setHeader('content-type', 'text/html');
@@ -9,8 +9,8 @@ const server = http.createServer((req, res) => {
       <!DOCTYPE html>
       <html>
         <body>
-          <h1>${p.upper(__dirname)}</h1>
-          <h1>${p.lower(__dirname)}</h1>
+          <h1>${upper(__dirname)}</h1>
+          <h1>${lower(__dirname)}</h1>
         </body>
       </html>
       `);
@@ -18,4 +18,7 @@ const server = http.createServer((req, res) => {
     res.end('UNKNOWN');
   }
 });
-server.listen(8080, () => console.log('started our server'));
+server.on('connection', (socket) => {
+  console.log('Someone connected', socket);
+});
+server.listen(PORT, () => console.log('started our server'));
