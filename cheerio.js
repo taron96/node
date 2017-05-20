@@ -686,4 +686,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
   </body>
 </html>
 `);
-console.log($('p').html());
+console.log($.html());
+console.log('\n\n\n\n\n');
+$('html').remove();
+console.log($.html());
